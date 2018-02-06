@@ -8,19 +8,17 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef }
 export class IncrementadorComponent implements OnInit {
 
   @ViewChild('txtProgress') txtProgress: ElementRef;
-
-
+  
   @Input() leyenda: string = 'Nombre leyenda';
   @Input() progreso: number = 50;
 
+  // Genero un emisor de evento, cuando cambia el numero del progreso y envio el valor
   @Output() actualizoValor: EventEmitter<number> = new EventEmitter();
 
   constructor() {
-    // console.log('Progreso: ', this.progreso);
    }
 
   ngOnInit() {
-    // console.log(this.txtProgress);
   }
 
   onChanges( newValue: number ) {
@@ -36,6 +34,7 @@ export class IncrementadorComponent implements OnInit {
 
     }
 
+    // Uso de Element Ref para extraer elemento del DOM con ViewChild
     this.txtProgress.nativeElement.value = this.progreso;
 
     this.actualizoValor.emit( this.progreso );
